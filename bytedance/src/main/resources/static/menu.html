@@ -1,0 +1,70 @@
+<div class="layui-header">
+    <div class="layui-logo">
+        WAF管理后台 - 6组
+    </div>
+    <ul class="layui-nav layui-layout-left">-->
+        <li id="menu-button-1" class="layui-nav-item layui-this"><a href="javascript:menu_rule()">维护自定义规则</a></li>
+        <li id="menu-button-2" class="layui-nav-item"><a href="javascript:menu_level()">WAF防护等级</a></li>
+        <li id="menu-button-3" class="layui-nav-item"><a href="javascript:menu_log()">日志管理</a></li>
+        <li id="menu-button-5" class="layui-nav-item"><a href="javascript:menu_list()">黑白名单管理</a></li>
+        <li id="menu-button-4" class="layui-nav-item"><a href="javascript:menu_dev()">关于开发者</a></li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    //JavaScript代码区域
+    layui.use('element', function () {
+        var element = layui.element;
+
+    });
+
+    function menu_rule() {
+        $("#menu-button-1").attr("class", "layui-nav-item layui-this");
+        $("#menu-button-2").attr("class", "layui-nav-item");
+        $("#menu-button-3").attr("class", "layui-nav-item");
+        $("#menu-button-4").attr("class", "layui-nav-item");
+        $("#menu-button-5").attr("class", "layui-nav-item");
+        $("content").empty();
+        $("#content").load("rule.html");
+    };
+
+    function menu_level() {
+        $("#menu-button-1").attr("class", "layui-nav-item");
+        $("#menu-button-2").attr("class", "layui-nav-item layui-this");
+        $("#menu-button-3").attr("class", "layui-nav-item");
+        $("#menu-button-4").attr("class", "layui-nav-item");
+        $("#menu-button-5").attr("class", "layui-nav-item");
+        $("#content").empty();
+        $("#content").load("level.html");
+    };
+
+    function menu_log() {
+        $("#menu-button-1").attr("class", "layui-nav-item");
+        $("#menu-button-2").attr("class", "layui-nav-item");
+        $("#menu-button-3").attr("class", "layui-nav-item layui-this");
+        $("#menu-button-4").attr("class", "layui-nav-item");
+        $("#menu-button-5").attr("class", "layui-nav-item");
+        $("#content").empty();
+        $("#content").load("log.html");
+    };
+
+    function menu_dev() {
+        $("#menu-button-1").attr("class", "layui-nav-item");
+        $("#menu-button-2").attr("class", "layui-nav-item");
+        $("#menu-button-3").attr("class", "layui-nav-item");
+        $("#menu-button-4").attr("class", "layui-nav-item layui-this");
+        $("#menu-button-5").attr("class", "layui-nav-item");
+        $("#content").empty();
+        $("#content").load("dev.html");
+    };
+
+    function menu_list() {
+        $("#menu-button-1").attr("class", "layui-nav-item");
+        $("#menu-button-2").attr("class", "layui-nav-item");
+        $("#menu-button-3").attr("class", "layui-nav-item");
+        $("#menu-button-4").attr("class", "layui-nav-item");
+        $("#menu-button-5").attr("class", "layui-nav-item layui-this");
+        $("#content").empty();
+        $("#content").load("list.html");
+    };
+</script>

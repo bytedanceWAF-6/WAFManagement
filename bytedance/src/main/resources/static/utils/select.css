@@ -1,0 +1,53 @@
+/* 消除单选框默认样式 */
+input {
+    appearance: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.rate-content {
+    display: flex; /*弹性容器，按比例继承宽高*/
+    flex-flow: row-reverse; /*元素反向排列*/
+    float: left;
+    margin-top: 200px;
+    margin-left: 200px;
+}
+
+/* 选中全部为name属性的选择器 */
+input[name="rate"] {
+    font-family: "iconfont";
+    font-size: 30px;
+    padding-right: 10px;
+    transition: all 0.4s ease; /*元素变化的过渡时间*/
+}
+
+input[name="rate"]::after {
+    content: "★";
+    color: #999;
+}
+
+input[name="rate"]:checked::after {
+    content: "★";
+    color: #ffa822;
+}
+
+input[name="rate"]:hover {
+    transform: scale(1.2); /*缩放*/
+}
+
+input[name="rate"]:hover::after {
+    content: "★";
+    color: #ffa822;
+}
+
+/* 兄弟选择器  选下面全部的兄弟*/
+input[name="rate"]:checked ~ input[name="rate"]::after {
+    content: "★";
+    color: #ffa822;
+}
+
+input[name="rate"]:hover ~ input[name="rate"]::after {
+    content: "★";
+    color: #ffa822;
+}

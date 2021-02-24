@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="layui/css/layui.css" media="all">
+<form class="layui-form"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    <div class="layui-form-item">
+        <label class="layui-form-label">xss</label>
+        <div class="layui-input-block">
+            <input type="radio" name="sex" value="0" title="1">
+            <input type="radio" name="sex" value="1" title="2" checked>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">Update</button>
+            <button type="reset" class="layui-btn layui-btn-primary">Reset</button>
+        </div>
+    </div>
+    <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
+</form>
+<script src="layui/layui.js"></script>
+<script>
+    layui.use('form', function () {
+        var form = layui.form;
+
+        //各种基于事件的操作，下面会有进一步介绍
+        //监听提交
+        form.on('submit(formDemo)', function (data) {
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+    });
+</script>

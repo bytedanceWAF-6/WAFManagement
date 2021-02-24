@@ -1,0 +1,132 @@
+<!--头部-->
+<script src="utils/log.js"></script>
+<div style="margin: 10px 0 10px 1%;width: 99%">
+    <!--        搜索栏-->
+    <!--        <div style="display: table-cell">-->
+    <!--            <form class="layui-form" id="search_form">-->
+    <!--                <div class="layui-input-block" style="display: table-cell">-->
+    <!--                    &lt;!&ndash;            <label>&emsp;接&emsp;口&emsp;</label>&ndash;&gt;-->
+    <!--                    <div class="layui-input-inline" style="width: 260px">-->
+    <!--                        <input type="text" name="name" placeholder="请输入规则内容"-->
+    <!--                               autocomplete="off" class="layui-input">-->
+    <!--                    </div>-->
+    <!--                </div>-->
+
+    <!--                <div style="display: table-cell">-->
+    <!--                    <button class="layui-btn layui-btn-sm layui-btn-danger" lay-submit lay-filter="search"-->
+    <!--                            style="margin-left: 15px"><i class="layui-icon">&#xe615;</i>搜&emsp;索-->
+    <!--                    </button>-->
+    <!--                    <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">-->
+    <!--                        <i class="layui-icon">&#xe631;</i>重&emsp;置-->
+    <!--                    </button>-->
+    <!--                </div>-->
+    <!--            </form>-->
+    <!--        </div>-->
+    <div style="display: table-cell">
+        <div style="display: table">
+            <!--新增-->
+            <div style="display: table-cell;">
+                <button id="log_delete" class="layui-btn layui-btn-normal layui-btn-danger" style="margin-left: 15px">
+                    <i class="layui-icon">&#xe640;</i> 清空所有日志
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<table id="goods_table" lay-filter="goods_bar"></table>
+<div class="layui-row" id="open_div" style="display:none;">
+    <form id="add_form" class="layui-form" action="" style="margin-top: 20px;align:center;">
+        <!--隐藏字段action，用来区分增加和编辑行为-->
+        <input type="hidden" name="action" id="action">
+        <!--隐藏字段id，用于提供编辑需要的主键-->
+        <input type="hidden" name="id" id="id">
+        <!--隐藏字段request_type，用于提供请求方式:get,post,put-->
+        <input type="hidden" name="request_type" id="request_type">
+
+        <div class="layui-form-item" style="display: table;width: 96%">
+            <div class="layui-form-item" style="display: table-cell;width: 50%">
+                <label class="layui-form-label">规则名</label>
+                <div class="layui-input-block">
+                    <input type="text" name="reg_expr_name" placeholder="请输入规则名"
+                           autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-form-item" style="display: table-cell;width: 50%">
+                <label class="layui-form-label">规则内容</label>
+                <div class="layui-input-block">
+                    <input type="text" name="reg_expr" placeholder="请输入规则，必须为正则表达式"
+                           autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item" style="display: table;width: 96%">
+            <div class="layui-form-item" style="display: table-cell;width: 50%">
+                <label class="layui-form-label">生效URL</label>
+                <div class="layui-input-block">
+                    <input type="text" name="url" placeholder="请输入URL，默认为通配"
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item" style="display: table-cell;width: 50%">
+                <label class="layui-form-label">匹配操作</label>
+                <div class="layui-input-block">
+                    <input type="text" name="jump" placeholder="accept / drop"
+                           autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item" style="display: table;width: 96%">
+            <div class="layui-form-item" style="display: table-cell;width: 50%">
+                <label class="layui-form-label">洞内等级</label>
+                <div class="layui-input-block">
+                    <select name="local_level" lay-filter="type" lay-verify="required">
+                        <option value="1" selected>1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item" style="display: table-cell;width: 50%">
+                <label class="layui-form-label">全局等级</label>
+                <div class="layui-input-block">
+                    <select name="global_level" lay-filter="type" lay-verify="required">
+                        <option value="1" selected>1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item" style="display: table;width: 96%">
+            <div class="layui-form-item" style="display: table-cell;width: 50%">
+                <label class="layui-form-label">备注信息</label>
+                <div class="layui-input-block">
+                    <input type="text" name="note" placeholder="选填"
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <input type="text" name="is_default" placeholder="0" value="0" hidden>
+        </div>
+
+
+        <div class="layui-form-item" style="margin-left: 40%">
+            <div class="layui-btn-group">
+                <button class="layui-btn" lay-submit="" lay-filter="update_submit">提&ensp;交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重&ensp;置</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<!--行工具按钮-->
+<script type="text/html" id="goods_lineBar">
+    <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+</script>
+</div>
+
+
